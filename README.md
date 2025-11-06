@@ -1,10 +1,10 @@
 # Udemy Course to learn about React, NextJS, Tailwind and more!
 
-## Sommary
+## Summary
 
-- [Setup](#setup)
-- [Pure React](#pure-react)
-- [Pizza Menu](#pizza-menu)
+1. [Setup](#setup)
+2. [Pure React](#pure-react)
+3. [Pizza Menu](#pizza-menu)
 
 ## Projects explained
 
@@ -12,12 +12,12 @@
 
 Contains a json snippets to use inside VS Code to make React code faster.
 
-## Pure React
+### Pure React
 
 This project helps to understand how a pure react app looks like.
 This is not the way we would build apps normally, but it's a good way to understand how a pure react app works.
 
-## Pizza Menu
+### Pizza Menu
 
 This project was built using the command `npx create-react-app my-app`.
 This is an easy and powerful way to setup a React way, as everthying is already set up for us.

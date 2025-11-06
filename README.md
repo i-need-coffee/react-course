@@ -2,9 +2,9 @@
 
 ## Summary
 
-1. [Setup](#setup)
-2. [Pure React](#pure-react)
-3. [Pizza Menu](#pizza-menu)
+0.  [Setup](#setup)
+1.  [Pure React](#pure-react)
+2.  [Pizza Menu](#pizza-menu)
 
 ## Projects explained
 

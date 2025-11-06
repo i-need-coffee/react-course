@@ -4,9 +4,10 @@
 
 0. [Setup](#setup)
 1. [Pure React](#pure-react)
-2. [Pizza Menu](#pizza-menu)
+2. [JS Review](#js-review)
+3. [Pizza Menu](#pizza-menu)
 
-## Projects explained
+## List of projects
 
 ### Setup
 
@@ -16,6 +17,10 @@ Contains a json snippets to use inside VS Code to make React code faster.
 
 This project helps to understand how a pure react app looks like.
 This is not the way we would build apps normally, but it's a good way to understand how a pure react app works.
+
+### JS Review
+
+The project is just a recap of javascript code that would be necessary to know in order to use React.
 
 ### Pizza Menu
 

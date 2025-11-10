@@ -193,8 +193,8 @@ console.log(count);
 
 // Optional chaining
 function getTotalReviewCount(book) {
-  const goodreads = book.reviews.goodreads?.reviewsCount;
-  const librarything = book.reviews.librarything?.reviewsCount ?? 0; // if the librarything is undefined here, it will cause an error, therefore we need to add the ? (optional chaining) to it
+  const goodreads = book.reviews?.goodreads?.reviewsCount;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0; // if the librarything is undefined here, it will cause an error, therefore we need to add the ? (optional chaining) to it
   return goodreads + librarything;
 }
 console.log(getTotalReviewCount(book));

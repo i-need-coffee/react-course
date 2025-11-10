@@ -147,7 +147,7 @@ function getBook(id) {
 // -- LESSON --
 
 // Destructuring
-const book = getBook(1);
+const book = getBook(3);
 const { title, author, pages, publicationDate, genres, hasMovieAdaptation } = book; // same as this : const title = book.title;
 console.log(title, author, genres);
 
@@ -162,3 +162,39 @@ console.log(newGenres);
 // Add or overwrite a property in an object using the spread operator
 const updatedBook = { ...book, moviePublicationDate: "2001-12-19", pages: 1210 };
 console.log(updatedBook);
+
+// Template literals
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split('-')[0]}.`;
+console.log(summary);
+
+// Ternary operator
+const pagesRange = pages > 1000 ? 'over a 1000' : 'less than 1000';
+console.log(`The book has ${pagesRange}.`);
+
+// Arrow functions
+const getYear = str => str.split('-')[0];
+console.log(getYear(publicationDate));
+
+// Short-circuiting with AND operator
+// falsy values : 0, null, '', false, undefined
+console.log(true && 'Some string'); // returns the second value
+console.log(false && 'Some string'); // returns the first value
+console.log(hasMovieAdaptation && 'This book has a movie'); // here we can use it kinda like an if statement
+
+// Short-circuiting with OR operator
+console.log(true || 'Some string'); // returns the first value
+console.log(false || 'Some string'); // returns the second value
+const spanishTranslation = book.translations.spanish || 'NOT TRANSLATED'; // can be used to give a default value (be careful with falsy values, 0 is considered false too)
+console.log(spanishTranslation);
+
+// Nullish coalescing operator (??)
+const count = book.reviews.librarything?.reviewsCount ?? 'no data'; // used to give a default value (best option for that)
+console.log(count);
+
+// Optional chaining
+function getTotalReviewCount(book) {
+  const goodreads = book.reviews.goodreads?.reviewsCount;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0; // if the librarything is undefined here, it will cause an error, therefore we need to add the ? (optional chaining) to it
+  return goodreads + librarything;
+}
+console.log(getTotalReviewCount(book));

@@ -146,9 +146,10 @@ function getBook(id) {
 
 // -- LESSON --
 
-// Destructuring
+// -- Destructuring --
 const book = getBook(3);
-const { title, author, pages, publicationDate, genres, hasMovieAdaptation } = book; // same as this : const title = book.title;
+const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+  book; // same as this : const title = book.title;
 console.log(title, author, genres);
 
 // Destructuring with arrays
@@ -156,45 +157,84 @@ const [primaryGenre, secondaryGenre, ...otherGenres] = genres; // same as this :
 console.log(primaryGenre, secondaryGenre, otherGenres);
 
 // Using the spread operator (...) to append a new element to an array
-const newGenres = [...genres, 'epic fantasy']; // will add it to the end of the array but you can add it at the beginning by doing ['epic fantasy', ...genres]
+const newGenres = [...genres, "epic fantasy"]; // will add it to the end of the array but you can add it at the beginning by doing ['epic fantasy', ...genres]
 console.log(newGenres);
 
 // Add or overwrite a property in an object using the spread operator
-const updatedBook = { ...book, moviePublicationDate: "2001-12-19", pages: 1210 };
+const updatedBook = {
+  ...book,
+  moviePublicationDate: "2001-12-19",
+  pages: 1210,
+};
 console.log(updatedBook);
 
-// Template literals
-const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split('-')[0]}.`;
+// -- Template literals --
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${
+  publicationDate.split("-")[0]
+}.`;
 console.log(summary);
 
-// Ternary operator
-const pagesRange = pages > 1000 ? 'over a 1000' : 'less than 1000';
+// -- Ternary operator --
+const pagesRange = pages > 1000 ? "over a 1000" : "less than 1000";
 console.log(`The book has ${pagesRange}.`);
 
-// Arrow functions
-const getYear = str => str.split('-')[0];
+// -- Arrow functions --
+const getYear = (str) => str.split("-")[0];
 console.log(getYear(publicationDate));
 
+// -- Short circuiting and null operator --
 // Short-circuiting with AND operator
 // falsy values : 0, null, '', false, undefined
-console.log(true && 'Some string'); // returns the second value
-console.log(false && 'Some string'); // returns the first value
-console.log(hasMovieAdaptation && 'This book has a movie'); // here we can use it kinda like an if statement
+console.log(true && "Some string"); // returns the second value
+console.log(false && "Some string"); // returns the first value
+console.log(hasMovieAdaptation && "This book has a movie"); // here we can use it kinda like an if statement
 
 // Short-circuiting with OR operator
-console.log(true || 'Some string'); // returns the first value
-console.log(false || 'Some string'); // returns the second value
-const spanishTranslation = book.translations.spanish || 'NOT TRANSLATED'; // can be used to give a default value (be careful with falsy values, 0 is considered false too)
+console.log(true || "Some string"); // returns the first value
+console.log(false || "Some string"); // returns the second value
+const spanishTranslation = book.translations.spanish || "NOT TRANSLATED"; // can be used to give a default value (be careful with falsy values, 0 is considered false too)
 console.log(spanishTranslation);
 
 // Nullish coalescing operator (??)
-const count = book.reviews.librarything?.reviewsCount ?? 'no data'; // used to give a default value (best option for that)
+const count = book.reviews.librarything?.reviewsCount ?? "no data"; // used to give a default value (best option for that)
 console.log(count);
 
-// Optional chaining
+// -- Optional chaining --
 function getTotalReviewCount(book) {
   const goodreads = book.reviews?.goodreads?.reviewsCount;
   const librarything = book.reviews?.librarything?.reviewsCount ?? 0; // if the librarything is undefined here, it will cause an error, therefore we need to add the ? (optional chaining) to it
   return goodreads + librarything;
 }
 console.log(getTotalReviewCount(book));
+
+// -- Map method --
+const books = getBooks();
+const titles = books.map((book) => book.title);
+console.log(titles);
+
+// Here we can use () to automatically return the values without needing the use the return method
+const essentialData = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+  reviewsCount: getTotalReviewCount(book),
+}));
+console.log(essentialData);
+
+// -- Filter method --
+const longBooks = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation);
+console.log(longBooks);
+
+const adventureBooks = books
+  .filter((book) => book.genres.includes("adventure"))
+  .map((book) => book.title);
+console.log(adventureBooks);
+
+// -- Reduce method --
+const pagesAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
+console.log(pagesAllBooks);
+
+// -- Sort method --
+const sortedByPages = books.slice().sort((a, b) => a.pages - b.pages); // we use the slice method in combination of sort to make sure to return a new array (and not modify the original one)
+console.log(sortedByPages);
